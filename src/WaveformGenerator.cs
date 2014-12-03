@@ -7,6 +7,7 @@ namespace TinCan
 {
     public enum Waveform
     {
+        Nothing,
         Sine, 
         Triangle, 
         Square, 
@@ -71,6 +72,8 @@ namespace TinCan
         {
             switch (_waveform)
             {
+                case Waveform.Nothing:
+                    return 0;
                 case Waveform.Sine:
                     return (short)(Math.Sin(2 * Math.PI * _position / samplesPerCycle) * short.MaxValue);
                 case Waveform.Square:

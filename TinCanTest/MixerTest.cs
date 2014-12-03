@@ -83,7 +83,7 @@ namespace AudioLibraryTests
             const int channels = 2;
             var target = Mixer.Create();
             target.SetBlockSize(channels, sampleRate);
-            var generator1 = WaveformGenerator.Create(Waveform.Sine);
+            var generator1 = WaveformGenerator.Create(Waveform.Nothing);
             var generator2 = WaveformGenerator.Create(Waveform.Sine);
             generator2.Play = generator1.Play = true;
             target.AddComponent("sine generator1", generator1);
