@@ -41,10 +41,10 @@
     <Compile Include="AudioChannels.cs" />
     <Compile Include="AudioEngine.cs" />
     <Compile Include="AudioEventInfo.cs" />
-    <Compile Include="ContentReader.cs" />
-    <Compile Include="ContentTypeReader.cs" />
-    <Compile Include="IContentManager.cs" />
-    <Compile Include="DynamicSoundEffectInstance.cs" />
+    <Compile Include="External\ContentReader.cs" />
+    <Compile Include="External\ContentTypeReader.cs" />
+    <Compile Include="External\IContentManager.cs" />
+    <Compile Include="External\DynamicSoundEffectInstance.cs" />
     <Compile Include="EventLocation.cs" />
     <Compile Include="IAudioComponent.cs" />
     <Compile Include="IAudioInsert.cs" />
@@ -65,7 +65,7 @@
     <Compile Include="Sequencer.cs" />
     <Compile Include="SequencerTrack.cs" />
     <Compile Include="SynthesizerInstrument.cs" />
-    <Compile Include="ThreadPool.cs" />
+    <Compile Include="External\ThreadPool.cs" />
     <Compile Include="TrackEvent.cs" />
     <Compile Include="WaveformGenerator.cs" />
   </ItemGroup>
