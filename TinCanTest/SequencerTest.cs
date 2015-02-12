@@ -295,7 +295,7 @@ namespace AudioLibraryTests
                 throw new NotImplementedException();
             }
 
-            public bool WriteToOutput(short[] outData, int sampleOffset, int sampleCount, int frame)
+            public void WriteToOutput(short[] outData, int sampleOffset, int sampleCount, int frame)
             {
                 throw new NotImplementedException();
             }
