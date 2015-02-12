@@ -39,23 +39,19 @@ namespace TinCan
         }
 
 
-        public bool WriteToOutput(short[] outData, int offset, int length, int frame)
+        public void WriteToOutput(short[] outData, int offset, int length, int frame)
         {
-            bool wroteData = false;
             EnsureTempBuffers(length);
 
             int currentChannel = 0;
             foreach (var channel in _channels)
             {
-                if (wroteData |= channel.Value.WriteToOutput(_tempBuffer, _tempBufferLen * currentChannel, _tempBufferLen, frame))
-                    MixToTempBuffer(_tempBuffer, _tempBufferLen * currentChannel, _tempBufferLen);
+                channel.Value.WriteToOutput(_tempBuffer, _tempBufferLen * currentChannel, _tempBufferLen, frame);
+                MixToTempBuffer(_tempBuffer, _tempBufferLen * currentChannel, _tempBufferLen);
                 currentChannel++;
             }
             
-            if (wroteData)
-                RenderOutput(outData, offset, length, _renderBuffer);
-
-            return wroteData;
+            RenderOutput(outData, offset, length, _renderBuffer);
         }
 
         private void MixToTempBuffer(short[] tempBuffer, int tempBufferOffset, int length)

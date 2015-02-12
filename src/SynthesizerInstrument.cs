@@ -9,13 +9,11 @@ namespace TinCan
     {
 
         WaveformGenerator _generator;
-        Attenuator _attenuator = new Attenuator();
 
-        private SynthesizerInstrument() {
-            _attenuator.Level = 0.01d; 
-
+        private SynthesizerInstrument() 
+        {
         }
-        
+
         public void Play(AudioEventInfo eventInfo)
         {
             // A + 3 = C
@@ -32,12 +30,9 @@ namespace TinCan
             _generator.SetBlockSize(channels, sampleSize);
         }
 
-        public bool WriteToOutput(short[] outData, int offset, int length, int frame)
+        public void WriteToOutput(short[] outData, int offset, int length, int frame)
         {
-            var ret =_generator.WriteToOutput(outData, offset, length, frame);
-            if (ret)
-                _attenuator.WriteToOutput(outData, offset, length, frame);
-            return ret;
+            _generator.WriteToOutput(outData, offset, length, frame);
         }
 
 

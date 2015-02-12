@@ -124,7 +124,7 @@ namespace TinCan
         {
             var track = SequencerTrack.Create(instrument, 4, loopLength);
             _sequencer.AddTrack(trackName, track);
-            var attenuator = new Attenuator() { Level = attenuation };
+            var attenuator = Attenuator.Create(attenuation);
             var insertChain = InsertChain.Create(instrument);
             insertChain.AddInsert(attenuator);
             _rootAudioGraph.AddComponent(trackName, insertChain);

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TinCan
 {
-    class InsertChain : IAudioComponent
+    public class InsertChain : IAudioComponent
     {
         List<IAudioComponent> _inserts = new List<IAudioComponent>();
 
@@ -20,12 +20,10 @@ namespace TinCan
                 component.SetBlockSize(channels, sampleRate);
         }
 
-        public bool WriteToOutput(short[] outData, int sampleOffset, int sampleCount, int frame)
+        public void WriteToOutput(short[] outData, int sampleOffset, int sampleCount, int frame)
         {
-            bool wasProcessed = false;
             foreach (var component in _inserts)
-                wasProcessed |= component.WriteToOutput(outData, sampleOffset, sampleCount, frame);
-            return wasProcessed;
+                component.WriteToOutput(outData, sampleOffset, sampleCount, frame);
         }
 
         public void AddInsert(IAudioComponent processor)

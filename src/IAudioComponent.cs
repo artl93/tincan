@@ -9,6 +9,6 @@ namespace TinCan
     public interface IAudioComponent 
     {
         void SetBlockSize(int channels, int sampleRate);
-        bool WriteToOutput(short[] outData, int sampleOffset, int sampleCount, int frame);
+        void WriteToOutput(short[] outData, int sampleOffset, int sampleCount, int frame);
     }
 }

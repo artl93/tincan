@@ -33,13 +33,12 @@ namespace TinCan
 
         }
 
-        public bool WriteToOutput(short[] outData, int outputOffset, int outputLength, int frame)
+        public void WriteToOutput(short[] outData, int outputOffset, int outputLength, int frame)
         {
             int outputOffsetInBytes = outputOffset * sizeof(short);
             int outputLengthInBytes = outputLength * sizeof(short);
             int currentWriteOffsetBytes = 0;
             int nextOffsetInBytes = outputLengthInBytes;
-            bool wroteData = false; 
             RenderInfo renderInfo = new RenderInfo();
 #if DEBUG 
             List<RenderInfo> debugRenders = new List<RenderInfo>();
@@ -60,7 +59,7 @@ namespace TinCan
 #if DEBUG
                     debugRenders.Add(renderInfo);
 #endif 
-                    wroteData |= Render(outData, renderInfo);
+                    Render(outData, renderInfo);
                 }
                 _currentNote = playInfo.note;
                 Reset();
@@ -78,9 +77,8 @@ namespace TinCan
 #if DEBUG
                 debugRenders.Add(renderInfo);
 #endif
-                wroteData |= Render(outData, renderInfo);
+                Render(outData, renderInfo);
             }
-            return wroteData;
         }
 
         private bool Render(short[] outData, RenderInfo renderInfo)
