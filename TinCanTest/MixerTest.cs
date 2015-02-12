@@ -118,15 +118,19 @@ namespace AudioLibraryTests
             target.SetBlockSize(channels, sampleRate);
             var chain1 = InsertChain.Create();
             var generator = WaveformGenerator.Create(Waveform.Sine);
+            var generator2 = WaveformGenerator.Create(Waveform.Sine);
             generator.Play = true;
+            generator2.Play = true;
             chain1.AddInsert(generator);
             chain1.AddInsert(Attenuator.Create(0.5));
             var chain2 = InsertChain.Create();
-            chain2.AddInsert(generator);
+            chain2.AddInsert(generator2);
             chain2.AddInsert(Attenuator.Create(0.5));
 
             target.AddComponent("sine generator1", chain1);
             target.AddComponent("sine generator2", chain2);
+
+
             var expectedResultGenerator = WaveformGenerator.Create(Waveform.Sine);
             expectedResultGenerator.SetBlockSize(channels, sampleRate);
             expectedResultGenerator.Play = true;
@@ -144,8 +148,17 @@ namespace AudioLibraryTests
             {
                 var expected = expectedData[i];
                 var actual = outData[i];
-                Assert.IsTrue(expected == actual, string.Format("short{2}: expected = {0}; actual = {1}", expected, actual, i));
+                Assert.IsTrue(WithinTollerance(expected, actual, 1), string.Format("short{2}: expected = {0}; actual = {1}", expected, actual, i));
             }
+        }
+
+        static bool WithinTollerance(short expected, short actual, short tollerance)
+        {
+            if (actual > expected + tollerance)
+                return false;
+            if (actual < expected - tollerance)
+                return false;
+            return true;
         }
     }
 }
