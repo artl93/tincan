@@ -57,7 +57,7 @@ namespace TinCan
                 _patch.GetSampleFile(note);
         }
 
-        protected override void RenderOutput(short[] outData, int offset, int length, int[] tempBuffer)
+        protected override void RenderOutput(short[] outData, int offset, int length, float[] tempBuffer)
         {
             for (int i = 0; i < length; i++)
             {

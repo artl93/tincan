@@ -11,7 +11,7 @@ namespace TinCan
         private short _channelCount;
         int _tempBufferLen = 0;
         short[] _tempBuffer;
-        int[] _renderBuffer;
+        float[] _renderBuffer;
         private int _audioChannels;
         private int _sampleRate;
 
@@ -30,7 +30,7 @@ namespace TinCan
             {
                 _tempBufferLen = length;
                 _tempBuffer = new short[_tempBufferLen * _channelCount];
-                _renderBuffer = new int[_tempBufferLen];
+                _renderBuffer = new float[_tempBufferLen];
             }
             for (int i = 0; i < _tempBufferLen; i++)
                 _renderBuffer[i] = 0;
@@ -39,26 +39,22 @@ namespace TinCan
         }
 
 
-        public bool WriteToOutput(short[] outData, int offset, int length, int frame)
+        public void WriteToOutput(short[] outData, int offset, int length, int frame)
         {
-            bool wroteData = false;
             EnsureTempBuffers(length);
 
             int currentChannel = 0;
             foreach (var channel in _channels)
             {
-                if (wroteData |= channel.Value.WriteToOutput(_tempBuffer, _tempBufferLen * currentChannel, _tempBufferLen, frame))
-                    MixToTempBuffer(_tempBuffer, _tempBufferLen * currentChannel, _tempBufferLen);
+                channel.Value.WriteToOutput(_tempBuffer, _tempBufferLen * currentChannel, _tempBufferLen, frame);
+                AddToRenderBuffer(_tempBuffer, _tempBufferLen * currentChannel, _tempBufferLen);
                 currentChannel++;
             }
             
-            if (wroteData)
-                RenderOutput(outData, offset, length, _renderBuffer);
-
-            return wroteData;
+            RenderOutput(outData, offset, length, _renderBuffer);
         }
 
-        private void MixToTempBuffer(short[] tempBuffer, int tempBufferOffset, int length)
+        private void AddToRenderBuffer(short[] tempBuffer, int tempBufferOffset, int length)
         {
             for (int i = 0; i < length; i++)
             {
@@ -68,7 +64,7 @@ namespace TinCan
             }
         }
 
-        protected virtual void RenderOutput(short[] outData, int offset, int length, int[]tempBuffer)
+        protected virtual void RenderOutput(short[] outData, int offset, int length, float[]tempBuffer)
         {
             for (int i = 0; i < length; i++)
             {

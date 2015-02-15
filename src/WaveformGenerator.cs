@@ -7,6 +7,7 @@ namespace TinCan
 {
     public enum Waveform
     {
+        Nothing,
         Sine, 
         Triangle, 
         Square, 
@@ -43,12 +44,12 @@ namespace TinCan
 
 
 
-        public bool WriteToOutput(short[] outData, int offset, int length, int frame)
+        public void WriteToOutput(short[] outData, int offset, int length, int frame)
         {
             if (!Play)
             {
                 _position = 0;
-                return false;
+                return;
             }
             double samplesPerCycle = _sampleRate / Frequency;
 
@@ -64,13 +65,15 @@ namespace TinCan
                     outData[sample + channel] = val;
                 }
             }
-            return true;
+            return;
         }
 
         private short GetPCMValue(double samplesPerCycle)
         {
             switch (_waveform)
             {
+                case Waveform.Nothing:
+                    return 0;
                 case Waveform.Sine:
                     return (short)(Math.Sin(2 * Math.PI * _position / samplesPerCycle) * short.MaxValue);
                 case Waveform.Square:
