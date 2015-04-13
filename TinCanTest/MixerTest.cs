@@ -8,7 +8,7 @@ namespace AudioLibraryTests
     
     /// <summary>
     ///This is a test class for AudioComponentContainerTest and is intended
-    ///to contain all AudioComponentContainerTest Unit Tests
+    ///to contain all AudioComponentContainerTest Unit Tests, but that's a lie.
     ///</summary>
     [TestClass()]
     public class MixerTest
