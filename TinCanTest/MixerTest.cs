@@ -21,7 +21,7 @@ namespace AudioLibraryTests
         ///Gets or sets the test context which provides
         ///information about and functionality for the current test run.
         ///</summary>
-        public TestContext TestContext
+        public TestContext TestContext 
         {
             get
             {
