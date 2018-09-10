@@ -37,37 +37,37 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attenuator.cs" />
-    <Compile Include="AudioChannels.cs" />
-    <Compile Include="AudioEngine.cs" />
-    <Compile Include="AudioEventInfo.cs" />
+    <Compile Include="AudioCore\Attenuator.cs" />
+    <Compile Include="AudioCore\AudioChannels.cs" />
+    <Compile Include="AudioCore\AudioEngine.cs" />
+    <Compile Include="AudioCore\AudioEventInfo.cs" />
     <Compile Include="External\ContentReader.cs" />
     <Compile Include="External\ContentTypeReader.cs" />
     <Compile Include="External\IContentManager.cs" />
     <Compile Include="External\DynamicSoundEffectInstance.cs" />
-    <Compile Include="EventLocation.cs" />
-    <Compile Include="IAudioComponent.cs" />
-    <Compile Include="IAudioInsert.cs" />
-    <Compile Include="IInstrument.cs" />
-    <Compile Include="InsertChain.cs" />
-    <Compile Include="Mixer.cs" />
-    <Compile Include="MusicNote.cs" />
-    <Compile Include="NoteEventMap.cs" />
-    <Compile Include="NoteStartedEventArg.cs" />
-    <Compile Include="Patch.cs" />
+    <Compile Include="AudioCore\EventLocation.cs" />
+    <Compile Include="AudioCore\IAudioComponent.cs" />
+    <Compile Include="AudioCore\IAudioInsert.cs" />
+    <Compile Include="SynthCore\IInstrument.cs" />
+    <Compile Include="AudioCore\InsertChain.cs" />
+    <Compile Include="AudioCore\Mixer.cs" />
+    <Compile Include="Sequencer\MusicNote.cs" />
+    <Compile Include="Sequencer\NoteEventMap.cs" />
+    <Compile Include="Sequencer\NoteStartedEventArg.cs" />
+    <Compile Include="SynthCore\Patch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SampleFile.cs" />
-    <Compile Include="SampleFileReader.cs" />
-    <Compile Include="SamplePlayer.cs" />
-    <Compile Include="SamplerInstrument.cs" />
-    <Compile Include="Scale.cs" />
-    <Compile Include="Scales.cs" />
-    <Compile Include="Sequencer.cs" />
-    <Compile Include="SequencerTrack.cs" />
-    <Compile Include="SynthesizerInstrument.cs" />
+    <Compile Include="AudioCore\SampleFile.cs" />
+    <Compile Include="AudioCore\SampleFileReader.cs" />
+    <Compile Include="AudioCore\SamplePlayer.cs" />
+    <Compile Include="SynthCore\SamplerInstrument.cs" />
+    <Compile Include="Sequencer\Scale.cs" />
+    <Compile Include="Sequencer\Scales.cs" />
+    <Compile Include="Sequencer\Sequencer.cs" />
+    <Compile Include="Sequencer\SequencerTrack.cs" />
+    <Compile Include="SynthCore\SynthesizerInstrument.cs" />
     <Compile Include="External\ThreadPool.cs" />
-    <Compile Include="TrackEvent.cs" />
-    <Compile Include="WaveformGenerator.cs" />
+    <Compile Include="Sequencer\TrackEvent.cs" />
+    <Compile Include="AudioCore\WaveformGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
